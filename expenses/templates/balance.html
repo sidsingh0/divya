@@ -1,23 +1,44 @@
 {% extends "base.html" %}
-{% block title %}Account Balance{% endblock %}
+{% load static %}
+{% block title %}Profile{% endblock %}
 
 {% block content %}
-<div class="container-balance">
-    <h2>YOUR BALANCE</h2>
-    <h1 id="balance">₹ {{total_balance}}</h1>
-    <div class="">
-        <div style="margin-top: 10px;">
-            <h2>Income</h2>
-            <h3 id="money-plus" class="money-plus">
-                ₹{{total_income}}
-            </h3>
+<div class="container-history">
+  <!-- <h3 class="subhead">History</h3> -->
+  <div style="display:grid;grid-template-columns: 1fr 2fr;gap:30px">
+  <img src="{% static 'man.jpg' %}" style="width: 100%;aspect-ratio: 1;border-radius: 8px;">
+    <div>
+      <h3 class="subhead" style="border-bottom: 0;margin: 0;">Hello, Siddharth</h3>
+      <div style="display:grid;grid-template-columns: 1fr 1fr;margin-top: 40px;">
+        <div>
+          <small>Username</small>
+          <p>Sidsingh0</p>
         </div>
-        <div style="margin-top: 10px;">
-            <h2>Expense</h2>
-            <h3 id="money-minus" class="money-minus">
-                ₹{{total_expense}}
-            </h3>
+        <div>
+          <small>Phone</small>
+          <p>9372642011</p>
         </div>
+      </div>
+      <div style="margin-top: 15px;">
+        <small>Name</small>
+        <p>Siddharth Singh</p>
+      </div>
     </div>
+  </div>
+  <div style="display:grid;grid-template-columns: 1fr 1fr;gap:30px;margin-top: 30px;" class="profo">
+    <li class="plus liflex cardmesh ">
+        <div style="z-index:1000;position:relative;" class="profocar">
+            <small style="color:#9c9c9c">Total Income</small>
+            <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">+{{total_income}}$</h2>
+        </div>
+    </li>
+    <li class="minus liflex cardmesh">
+        <div style="z-index:1000;position:relative;" class="profocar">
+            <small style="color:#9c9c9c">Total Spending</small>
+            <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">-{{total_expense}}$</h2>
+        </div>
+    </li>
+  </div>
+
 </div>
 {% endblock %}

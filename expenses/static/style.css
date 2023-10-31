@@ -212,17 +212,17 @@ label {
   margin: 10px 0;
 }
 
-.list li.plus {
+.list li.plus, .profo .plus {
   border-left: 10px solid rgba(0,212,255,1);
   filter: drop-shadow(0px 0px 3px rgba(0,212,255,1));
 }
-.list li.plus:hover {
+.list li.plus:hover, .profo .plus:hover {
   border-left: 10px solid rgba(0,212,255,1);
   filter: drop-shadow(0px 0px 20px rgba(0,212,255,1));
 }
 
 
-.list li.minus {
+.list li.minus, .profo .minus {
   border-left: 10px solid rgb(255, 0, 179);
   box-shadow:(0px 0px 3px rgb(255, 0, 179));
 }
@@ -313,6 +313,24 @@ body {
   top: 0.5%;
   left: 0.5%;
   border-radius: 28px;
+}
+
+.profo .cardmesh::after {
+  background: #181818;
+  border-radius: 8px;
+}
+.profo .liflex{
+  padding: 15px 30px!important;
+}
+.profo{
+  text-align: end;
+}
+.profo small, .profo h2{
+  width: 100%; 
+  display: block;
+}
+.profo .profocar{
+  width: 100%;
 }
 
 .cardmesh:hover {
