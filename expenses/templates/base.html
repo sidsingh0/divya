@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,400,700&display=swap" rel="stylesheet">
+    <title>{% block title %}Expense Tracker{% endblock %}</title>
+    <script src="{% static 'script.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <img class="login" src="{% static 'logo.png' %}" height="30"></img>
+        <nav class="navigation">
+            <a href="/">Home</a>
+            <a href="/balance/">Balance</a>
+            <a href="/history/">History</a>
+            <a href="/statistics/">Statistics</a>
+            <a href="/logout/">Logout</a>
+        </nav>
+    </header>
+    {% block content %}{% endblock %}
+</body>
+</html>

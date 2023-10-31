@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Add new Transaction{% endblock %}
+
+{% block content %}
+
+{% if msg %}
+<p>
+  {{ msg|safe }}
+</p>
+{% endif %}
+<div style="display:flex;align-items: center;height: 100vh;">
+  <div class="container grid2">
+    <div class="hero-headdiv">
+      <h1 class="hero-head">
+        Managing <span style="color:#C74604">money</span>, made easier.
+      </h1>
+    </div>
+    <div class="cardmesh">
+      <div class="card-info">
+        <h2 class="subhead">Add a new Transaction</h2>
+        <form id="form" method="POST" action="">
+          {% csrf_token %}
+          <div class="form-control checkboxmany">
+            <label class="checkbox-container">
+              <input class="custom-checkbox" type="radio" name="incomeExpense" id="incomeRadio" value="True" checked>
+              <span class="checkmark"></span>
+              Income
+            </label>
+            <label class="checkbox-container">
+              <input class="custom-checkbox" type="radio" name="incomeExpense" id="incomeRadio" value="False">
+              <span class="checkmark"></span>
+              Expense
+            </label>
+          </div>
+
+          <div class="form-control grid3">
+            <label for="text">Label</label>
+            <input type="text" id="text" name="label" placeholder="Enter Text...">
+          </div>
+          <div class="form-control grid3">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter Amount...">
+          </div>
+          <button class="btn">Add Transaction</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

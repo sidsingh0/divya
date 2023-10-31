@@ -1,0 +1,456 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "General Sans", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 150px;
+  background: #181818;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+}
+
+.login {
+  font-size: 2em;
+  color: black;
+  user-select: none;
+}
+
+.navigation a {
+  position: relative;
+  font-size: 1.1em;
+  color: #9c9c9c!important;
+
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+}
+
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: -webkit-linear-gradient(137deg, rgb(255, 0, 179) 0%, rgba(0,212,255,1) 100%);
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+
+.navigation a{
+  transition: 0.5s;
+}
+.navigation a:hover{
+  background: -webkit-linear-gradient(137deg, rgb(255, 0, 179) 0%, rgba(0,212,255,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.navigation a:hover::after {
+  transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid black;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: black;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.navigation .btnLogin-popup:hover {
+  background: black;
+  color: #f7f0f5;
+}
+
+:root {
+  --box-shadow: 0 1px 3px #rgba(0, 0, 0, 0.12), 0 1px 2px #rgba(0, 0, 0, 0.24);
+}
+
+body {
+  background-color: #decbb7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container-balance {
+  margin: 100px auto;
+  width: 350px;
+}
+
+.container-home {
+  margin: 100px auto;
+  width: 350px;
+}
+
+.container-history {
+  margin: 100px auto;
+  width: 600px;
+}
+
+.container-balance h1 {
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.container-home h1 {
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.container-home h3 {
+  border-bottom: 1px solid #433633;
+  padding-bottom: 10px;
+  margin: 40px 0 10px;
+}
+
+.container-history h3 {
+  border-bottom: 1px solid #433633;
+  padding-bottom: 10px;
+  margin: 40px 0 10px;
+}
+
+.container-balance h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.inc-exp {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.inc-exp > div {
+  flex: 1;
+  text-align: center;
+}
+
+.inc-exp > div:first-of-type {
+  border-right: 1px solid #433633;
+}
+
+.money-plus {
+  color: forestgreen;
+}
+
+.money-minus {
+  color: red;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+  border: 1px solid #433633;
+  border-radius: 2px;
+  display: block;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+}
+
+.btn {
+  cursor: pointer;
+  /* background-color: #f7f0f5; */
+  background: linear-gradient(360deg, #0F0E0E 0%, #1C1B1B 100%);
+  border: 1px solid #433633;
+  box-shadow: var(--box-shadow);
+  display: block;
+  color: white;
+  font-size: 16px;
+  margin: 30px 0 0;
+  padding: 10px 30px;
+  /* width: 100%; */
+  border-radius: 5px;
+}
+
+label {
+  display: inline-block;
+  /* margin: 10px 0; */
+}
+
+.btn:focus,
+.delete-btn:focus {
+  outline: 0;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.list li {
+  background-color: #f7f0f5;
+  box-shadow: var(--box-shadow);
+  color: #433633;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.list li.plus {
+  border-left: 10px solid rgba(0,212,255,1);
+  filter: drop-shadow(0px 0px 3px rgba(0,212,255,1));
+}
+.list li.plus:hover {
+  border-left: 10px solid rgba(0,212,255,1);
+  filter: drop-shadow(0px 0px 20px rgba(0,212,255,1));
+}
+
+
+.list li.minus {
+  border-left: 10px solid rgb(255, 0, 179);
+  box-shadow:(0px 0px 3px rgb(255, 0, 179));
+}
+
+.delete-btn {
+  cursor: pointer;
+  background-color: darkred;
+  border: 0;
+  color: #f7f0f5;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+body {
+  background-color: #121212;
+  background: url('./background.jpg');
+  background-size: cover;
+  color: #ffffff;
+}
+.container{
+    /* margin-top: 80px; */
+    width: 100%;
+    padding: 0 150px;
+}
+.grid2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.hero-headdiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero-head{
+    font-size: 82px;
+    line-height: 1.1;
+}
+.hero-head span{
+    font-size: 72px;
+    background: -webkit-linear-gradient(137deg, rgb(255, 0, 179) 0%, rgba(0,212,255,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.subhead{
+    color:#fff;
+    font-size: 32px;
+    font-weight: 600;
+    /* text-transform: uppercase; */
+    margin-bottom: 20px;
+}
+.cardmesh{
+    background: #161616;
+    padding: 60px;
+    border-radius: 20px;
+}
+/* glowing hover card made by: csozi | Website: english.csozi.hu*/
+
+.cardmesh {
+  position: relative;
+  background: rgb(255, 0, 179);
+  background: linear-gradient(137deg, rgb(255, 0, 179) 0%, rgba(0,212,255,1) 100%);
+  transition: 0.3s ease;
+  border-radius: 30px;
+  filter: drop-shadow(0px 0px 5px rgba(209, 38, 197, 0.5));
+}
+
+.cardmesh::after {
+  content: '';
+  /* background-color: #181818; */
+  background: url('./mesh.png');
+  background-size: cover;
+  background-position: bottom;
+  opacity: 98%;
+  position: absolute;
+  z-index: 1;
+  transition: 0.3s ease;
+  height: 99%;
+  width: 99%;
+  top: 0.5%;
+  left: 0.5%;
+  border-radius: 28px;
+}
+
+.cardmesh:hover {
+  filter: drop-shadow(0px 0px 30px rgba(209, 38, 197, 1));
+}
+.cardmesh input{
+    background:#212020;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #2e2c2d;
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329; */
+}
+
+.card-info{
+  z-index: 1000;
+  position: relative;
+}
+
+.form-control{
+  margin-bottom: 10px;
+}
+
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.custom-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #212020;
+  border: 1px solid #2e2c2d;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox:checked ~ .checkmark {
+  background: linear-gradient(137deg, rgb(255, 0, 179) 0%, rgba(0,212,255,1) 100%);
+  box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3);
+}
+
+.custom-checkbox:checked ~ .checkmark:after {
+  display: block;
+}
+
+@keyframes checkAnim {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 10px;
+  }
+}
+
+.custom-checkbox:checked ~ .checkmark:after {
+  animation: checkAnim 0.2s forwards;
+}
+
+.checkboxmany{
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.grid3{
+  margin-bottom: 15px;
+}
+.grid3 label{
+  margin-bottom: 5px;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+}
+
+.btn{
+  transition: 0.5s;
+}
+.btn:hover{
+  background: #f7f0f5!important;
+  color: #0F0E0E;
+}
+
+.nobg::after{
+  background:#181818 ;
+}
+
+.liflex{
+  padding: 30px!important;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px!important;
+  background: url('./mesh.png');
+  background-size: cover;
+  background-position: bottom;
+  z-index: 1;
+  transition: 0.3s ease;
+}

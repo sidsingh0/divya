@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Statistics{% endblock %}
+
+{% block content %}
+<div class="container-history">
+    <h3>Statistics</h3>
+    <canvas id="chartId" aria-label="chart" height="350" width="580"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js"></script>
+    <script>
+        var chrt = document.getElementById("chartId").getContext("2d");
+        var chartId = new Chart(chrt, {
+           type: 'pie',
+           data: {
+              labels: ["Positive Transactions (in ₹)", "Negative Transactions (in ₹)"],
+              datasets: [{
+                 label: "transactions",
+                  data: [{{total_income}},{{total_expense}}],
+                 backgroundColor: ['green', 'red']
+              }],
+           },
+           options: {
+              responsive: true,
+           },
+        });
+     </script>
+</div>
+{% endblock %}

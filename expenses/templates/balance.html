@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Account Balance{% endblock %}
+
+{% block content %}
+<div class="container-balance">
+    <h2>YOUR BALANCE</h2>
+    <h1 id="balance">₹ {{total_balance}}</h1>
+    <div class="">
+        <div style="margin-top: 10px;">
+            <h2>Income</h2>
+            <h3 id="money-plus" class="money-plus">
+                ₹{{total_income}}
+            </h3>
+        </div>
+        <div style="margin-top: 10px;">
+            <h2>Expense</h2>
+            <h3 id="money-minus" class="money-minus">
+                ₹{{total_expense}}
+            </h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

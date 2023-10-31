@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Transaction History{% endblock %}
+
+{% block content %}
+<div class="container-history">
+    <h3 class="subhead">History</h3>
+    <ul id="list" class="list">
+        {% for transaction in sorted_transactions %}
+        <li class="{%if transaction.ttype %}plus{% else %}minus{% endif %} liflex cardmesh">
+            <div style="z-index:1000;position:relative;">
+                <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">{{ transaction.label }}</h2>
+                <small style="color:#9c9c9c"></small>
+            </div>
+            <p class="subhead" style="margin-bottom:0px;z-index:1000;position:relative;">{% if transaction.ttype %}+{% else %}-{% endif %}₹{{ transaction.amount }}<a href="/delete/{{transaction.id}}" class="btn btn-primary">Delete</a> </p>
+            
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+

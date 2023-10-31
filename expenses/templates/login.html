@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Login to Money Manager{% endblock %}
+
+{% block content %}
+
+{% if msg %}
+<p>
+  {{ msg|safe }}
+</p>
+{% endif %}
+<div style="display:flex;align-items: center;height: 100vh;">
+  <div class="container">
+    <div class="cardmesh nobg" style="width:500px">
+      <div class="card-info">
+        <h2 class="subhead">Log in</h2>
+        <form action="" method="POST"> <!-- Changed the action attribute to "index.html" -->
+            {% csrf_token %}
+                <div class="form-control grid3">
+                    <label for="text">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                  </div>
+                  <div class="form-control grid3">
+                    <label for="amount">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                  </div>
+                <div class="form-group" style="display: flex;align-items: center;justify-content: center;">
+                    <button type="submit" class="btn" style="padding: 10px 40px;">Log in</button>
+                </div>
+                <p class="signup-link" style="text-align: center;margin-top: 5px;">Don't have an account? <a href="/signup/">Sign Up</a></p>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
