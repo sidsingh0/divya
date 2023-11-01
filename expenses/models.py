@@ -8,8 +8,12 @@ class Transactions(models.Model):
     ttype = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.user.username
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=13)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
 
     def __str__(self):

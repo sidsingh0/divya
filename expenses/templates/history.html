@@ -9,7 +9,7 @@
         <li class="{%if transaction.ttype %}plus{% else %}minus{% endif %} liflex cardmesh">
             <div style="z-index:1000;position:relative;">
                 <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">{{ transaction.label }}</h2>
-                <small style="color:#9c9c9c"></small>
+                <small style="color:#9c9c9c">Date: {{ transaction.timestamp|date:"Y-m-d" }}</small>
             </div>
             <p class="subhead" style="margin-bottom:0px;z-index:1000;position:relative;">{% if transaction.ttype %}+{% else %}-{% endif %}₹{{ transaction.amount }}<a href="/delete/{{transaction.id}}" class="btn btn-primary">Delete</a> </p>
             

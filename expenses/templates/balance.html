@@ -6,22 +6,22 @@
 <div class="container-history">
   <!-- <h3 class="subhead">History</h3> -->
   <div style="display:grid;grid-template-columns: 1fr 2fr;gap:30px">
-  <img src="{% static 'man.jpg' %}" style="width: 100%;aspect-ratio: 1;border-radius: 8px;">
+  <img src="/media/{{profile.profile_picture}}" style="width: 100%;aspect-ratio: 1;border-radius: 8px;">
     <div>
       <h3 class="subhead" style="border-bottom: 0;margin: 0;">Hello, {{ user.first_name }}</h3>
       <div style="display:grid;grid-template-columns: 1fr 1fr;margin-top: 40px;">
         <div>
           <small>Username</small>
-          <p>Sidsingh0</p>
+          <p>{{user.username}}</p>
         </div>
         <div>
           <small>Phone</small>
-          <p>9372642011</p>
+          <p>{{profile.phone}}</p>
         </div>
       </div>
       <div style="margin-top: 15px;">
         <small>Name</small>
-        <p>Siddharth Singh</p>
+        <p>{{ user.first_name }}</p>
       </div>
     </div>
   </div>
@@ -29,13 +29,13 @@
     <li class="plus liflex cardmesh ">
         <div style="z-index:1000;position:relative;" class="profocar">
             <small style="color:#9c9c9c">Total Income</small>
-            <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">+{{total_income}}$</h2>
+            <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">+{{total_income}}</h2>
         </div>
     </li>
     <li class="minus liflex cardmesh">
         <div style="z-index:1000;position:relative;" class="profocar">
             <small style="color:#9c9c9c">Total Spending</small>
-            <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">-{{total_expense}}$</h2>
+            <h2 class="subhead" style="margin-bottom: 0;font-weight: 400;">-{{total_expense}}</h2>
         </div>
     </li>
   </div>

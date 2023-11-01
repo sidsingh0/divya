@@ -37,6 +37,10 @@ def home(request):
 def balance(request):    
     current_user = request.user
     user = User.objects.get(id=current_user.id)
+    if(current_user.username != "admin"):
+        profile = UserProfile.objects.get(user=user)
+    else:
+        return redirect("home")
     # Calculate the total amount for the current user where ttype is False
     
     total_income = Transactions.objects.filter(user=current_user, ttype=True).aggregate(Sum('amount'))['amount__sum']
@@ -47,7 +51,7 @@ def balance(request):
     if total_expense is None:
         total_expense = 0  # Set to 0 if there are no matching transactions
     
-    context = {'total_income': total_income,'total_expense':total_expense,'total_balance':total_income-total_expense, 'current_user': request.user,'user':user}
+    context = {'total_income': total_income,'total_expense':total_expense,'total_balance':total_income-total_expense, 'current_user': request.user,'user':user,'profile':profile}
     return render(request, "balance.html",context)
 
 @login_required
@@ -78,11 +82,16 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save(commit=False)
-            image = form.cleaned_data.get('image')
-            user.save()
-            UserProfile.objects.create(profile_picture=image, user=user)
+            user = form.save()
+            
+            # Create a UserProfile instance for the user
+            profile_picture = form.cleaned_data.get('image')
+            phone = form.cleaned_data.get('phone')
+            UserProfile.objects.create(user=user, profile_picture=profile_picture,phone=phone)
+
+            # Log in the user
             login(request, user)
+            
             return redirect('home')
     else:
         form = CustomUserCreationForm()

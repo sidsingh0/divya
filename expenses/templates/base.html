@@ -18,7 +18,7 @@
             <a href="/balance/">Profile</a>
             <a href="/history/">History</a>
             <a href="/statistics/">Statistics</a>
-            {% if current_user %}
+            {% if current_user.is_authenticated %}
                 <a href="/logout/">Logout</a>
             {% else %}
             <a href="/login/">Login</a>
