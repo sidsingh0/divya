@@ -18,7 +18,12 @@
             <a href="/balance/">Profile</a>
             <a href="/history/">History</a>
             <a href="/statistics/">Statistics</a>
-            <a href="/logout/">Logout</a>
+            {% if current_user %}
+                <a href="/logout/">Logout</a>
+            {% else %}
+            <a href="/login/">Login</a>
+            <a href="/signup/">Sign Up</a>
+            {% endif %}
         </nav>
     </header>
     {% block content %}{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Transactions
+from .models import Transactions, UserProfile
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.contrib.auth import authenticate, login, logout
@@ -14,28 +14,29 @@ def home(request):
         amount_str = request.POST.get('amount')
 
         if not amount_str or not amount_str.strip():  # Check for empty or whitespace-only input
-            contextdata = {'msg': '<script>alert("Amount must not be empty.")</script>'}
+            contextdata = {'msg': '<script>alert("Amount must not be empty.")</script>', 'current_user': request.user}
             return render(request, "index.html", context=contextdata)
         if not label or not label.strip():  # Check for empty or whitespace-only input
-            contextdata = {'msg': '<script>alert("Text must not be empty.")</script>'}
+            contextdata = {'msg': '<script>alert("Text must not be empty.")</script>', 'current_user': request.user}
             return render(request, "index.html", context=contextdata)
 
         try:
             amount = int(amount_str)
         except (ValueError, TypeError):
-            contextdata = {'msg': '<script>alert("Amount must be a valid number.")</script>'}
+            contextdata = {'msg': '<script>alert("Amount must be a valid number.")</script>', 'current_user': request.user}
             return render(request, "index.html", context=contextdata)
 
         Transactions.objects.create(ttype=ttype, amount=amount, label=label, user=request.user)
 
-        contextdata = {'msg': '<script>alert("Successfully added your transaction.")</script>'}
+        contextdata = {'msg': '<script>alert("Successfully added your transaction.")</script>', 'current_user': request.user}
         return render(request, "index.html", context=contextdata)
     else:
-        return render(request, "index.html")
+        return render(request, "index.html", {'current_user': request.user})
 
 @login_required
 def balance(request):    
     current_user = request.user
+    user = User.objects.get(id=current_user.id)
     # Calculate the total amount for the current user where ttype is False
     
     total_income = Transactions.objects.filter(user=current_user, ttype=True).aggregate(Sum('amount'))['amount__sum']
@@ -46,14 +47,14 @@ def balance(request):
     if total_expense is None:
         total_expense = 0  # Set to 0 if there are no matching transactions
     
-    context = {'total_income': total_income,'total_expense':total_expense,'total_balance':total_income-total_expense}
+    context = {'total_income': total_income,'total_expense':total_expense,'total_balance':total_income-total_expense, 'current_user': request.user,'user':user}
     return render(request, "balance.html",context)
 
 @login_required
 def history(request):
     current_user = request.user
     sorted_transactions = Transactions.objects.filter(user=current_user).order_by('-timestamp')
-    context = {'sorted_transactions': sorted_transactions}
+    context = {'sorted_transactions': sorted_transactions, 'current_user': request.user}
     return render(request, "history.html",context)
 
 @login_required
@@ -69,7 +70,7 @@ def statistics(request):
     if total_expense is None:
         total_expense = 0  # Set to 0 if there are no matching transactions
     
-    context = {'total_income': total_income,'total_expense':total_expense}
+    context = {'total_income': total_income,'total_expense':total_expense, 'current_user': request.user}
     return render(request, "statistics.html",context)
 
 
@@ -77,13 +78,15 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
+            user = form.save(commit=False)
             image = form.cleaned_data.get('image')
-            user = form.save()
+            user.save()
+            UserProfile.objects.create(profile_picture=image, user=user)
             login(request, user)
             return redirect('home')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form, 'current_user': request.user})
 
 
 def login_view(request):
@@ -95,10 +98,10 @@ def login_view(request):
             login(request, user)
             return redirect('home')  # Redirect to the home page or any other desired page upon successful login
         else:
-            contextdata = {'msg': '<script>alert("Invalid login credentials. Please try again.")</script>'}
+            contextdata = {'msg': '<script>alert("Invalid login credentials. Please try again.")</script>', 'current_user': request.user}
             return render(request, 'login.html', context=contextdata)
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html',{'current_user': request.user})
 
 def logout_view(request):
     logout(request)
@@ -108,3 +111,4 @@ def delete(request,id):
     txn = Transactions.objects.get(id=id)
     txn.delete()
     return redirect("history")
+

@@ -8,7 +8,7 @@
   <div style="display:grid;grid-template-columns: 1fr 2fr;gap:30px">
   <img src="{% static 'man.jpg' %}" style="width: 100%;aspect-ratio: 1;border-radius: 8px;">
     <div>
-      <h3 class="subhead" style="border-bottom: 0;margin: 0;">Hello, Siddharth</h3>
+      <h3 class="subhead" style="border-bottom: 0;margin: 0;">Hello, {{ user.first_name }}</h3>
       <div style="display:grid;grid-template-columns: 1fr 1fr;margin-top: 40px;">
         <div>
           <small>Username</small>
