@@ -160,6 +160,7 @@ body {
 }
 
 input[type="text"],
+input[type="file"],
 input[type="number"],
 input[type="password"] {
   border: 1px solid #433633;

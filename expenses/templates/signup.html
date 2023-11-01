@@ -1,84 +1,28 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block title %}Sign up to Money Manager{% endblock %}
 
-<head>
-    <title>Sign Up Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+{% block content %}
 
-        .container {
-            width: 300px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container h2 {
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            display: block;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-
-        .login-link {
-            text-align: center;
-        }
-
-        .login-link a {
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h2>Sign Up</h2>
-        <form method="post" action="" class="form-group" enctype="multipart/form-data">
+{% if msg %}
+<p>
+  {{ msg|safe }}
+</p>
+{% endif %}
+<div style="display:flex;align-items: center;min-height: 100vh;margin:100px 0;">
+  <div class="container">
+    <div class="cardmesh nobg" style="width:500px">
+      <div class="card-info">
+        <h2 class="subhead">Sign Up</h2>
+        <form method="post" action="" class="form-group" enctype="multipart/form-data"> <!-- Changed the action attribute to "index.html" -->
             {% csrf_token %}
-            {{ form.as_p }}  
-            <button type="submit" style="width: 100%;color:white;background-color: #007BFF;border: none;padding: 8px 20px;border-radius: 3px;">Sign Up</button>
-        </form>
-        <p class="login-link">Already have an account? <a href="/login/">Login</a></p>
+            {{ form.as_p }} 
+                <div class="form-group" style="display: flex;align-items: center;justify-content: center;">
+                    <button type="submit" class="btn" style="padding: 10px 40px;">Sign Up</button>
+                </div>
+                <p class="signup-link" style="text-align: center;margin-top: 5px;">Already have an account? <a href="/login/">Log in</a></p>
+            </form>
+      </div>
     </div>
-</body>
-
-</html>
+  </div>
+</div>
+{% endblock %}
